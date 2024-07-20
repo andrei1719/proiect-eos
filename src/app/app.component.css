@@ -1,0 +1,9 @@
+.container {
+
+    position: relative;
+    top: 25px;
+}
+
+.navbar-nav {
+    margin-left: 40px;
+}
