@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Task } from '../task';
+import { Task, TaskStatus } from '../task';
 import { TaskService } from '../task.service';
 import { Router } from '@angular/router';
 import { User } from '../user';
@@ -21,17 +21,15 @@ export class CreateTaskComponent implements OnInit{
 
   users: User[] = [];
   task: Task = new Task;
+  statuses = TaskStatus;
   
   ngOnInit(): void {
     this.userService.getUsers().subscribe(data => {
-      console.log(data);
       this.users = data;
     })
   }
 
   saveTask() {
-    console.log(this.task);
-
     this.taskService.createTask(this.task).subscribe(
       data => {
         this.goToTaskList();

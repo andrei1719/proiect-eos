@@ -1,1 +1,33 @@
-<p>search works!</p>
+<div class="col-md-6 offset-md-3">
+  <h3>Search Task</h3>
+  <form (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+        <label>Assigned to</label>
+        <select class="form-control" id="user" [(ngModel)]="task.userID" name="user">
+          <option *ngFor="let user of users" [ngValue]="user.id">{{ user.userName }}</option>
+        </select>
+      </div>
+
+    <div class="form-group">
+      <label>Subject</label>
+      <input type="text" class="form-control" id="subject" [(ngModel)]="task.subject" name="subject">
+    </div>
+    <div class="form-group">
+      <label>Due Date</label>
+      <input type="date" class="form-control" id="dueDate" [(ngModel)]="task.dueDate" name="dueDate">
+    </div>
+    <div class="form-group">
+      <label>Status</label>
+      <select type="text" class="form-control" id="status" [(ngModel)]="task.status" name="status">
+        <option *ngFor="let status of statuses | keyvalue" [ngValue]="status.key">{{ status.value }}</option>
+      </select>
+    </div>
+    
+    <button class="btn btn-success button-submit" type="submit">Submit</button>
+  </form>  
+</div>
+
+<div *ngIf="isFormSent">
+    <app-task-list [task]="this.task"></app-task-list>
+</div>

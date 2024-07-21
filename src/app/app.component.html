@@ -4,12 +4,15 @@
           <a routerLink="tasks" routerLinkActive="active" class="nav-link" >Task List</a>
       </li>
       <li class = "nav-item">
+        <a routerLink="search-task" routerLinkActive="active" class="nav-link" >Search Task</a>
+    </li>
+      <li class = "nav-item">
           <a routerLink="create-task" routerLinkActive="active" class="nav-link" >New Task</a>
       </li>
   </ul>
 </nav>
 
-<h1 class="text-center"> {{title}} </h1>
+
 <div class = "container">
   <router-outlet></router-outlet>
 </div>
