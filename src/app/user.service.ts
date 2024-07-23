@@ -9,12 +9,14 @@ import { Task } from './task';
 })
 export class UserService {
 
-  private baseUrl = "http://localhost:8080/api/v1/users";
+  private usersUrl = "http://localhost:8080/api/v1/users";
+
 
   constructor(private httpClient:  HttpClient) { }
 
 
   getUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.baseUrl}`);
+    return this.httpClient.get<User[]>(`${this.usersUrl}`);
   }
 }
+

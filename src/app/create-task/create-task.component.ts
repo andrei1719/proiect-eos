@@ -16,8 +16,7 @@ export class CreateTaskComponent implements OnInit{
     private taskService: TaskService,
     private userService: UserService,
     private router: Router) {
-
-    }
+  }
 
   users: User[] = [];
   task: Task = new Task;
@@ -30,12 +29,16 @@ export class CreateTaskComponent implements OnInit{
   }
 
   saveTask() {
-    this.taskService.createTask(this.task).subscribe(
-      data => {
-        this.goToTaskList();
-      },
-      error => console.log(error)
-    );
+    if (this.task.user) {
+      this.taskService.createTask(this.task).subscribe(
+        data => {
+          this.goToTaskList();
+        },
+        error => console.error(error)
+      );
+    } else {
+      console.error('User is not set');
+    }
   }
 
   goToTaskList() {

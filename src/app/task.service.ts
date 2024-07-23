@@ -14,7 +14,7 @@ export class TaskService {
   getTasks(task: Task): Observable<Task[]> {
     let params = new HttpParams(); 
     
-    if (task.userID) { params = params.set('assigned', task.userID) }
+    if (task.user?.id) { params = params.set('assigned', task.user.id) }
     if (task.subject) { params = params.set('subject', task.subject) }
     if (task.dueDate) { params = params.set('dueDate', task.dueDate.toString()) }
     if (task.status) { params = params.set('status', task.status) }
@@ -26,5 +26,17 @@ export class TaskService {
     return this.httpClient.post(`${this.baseUrl}`, task);
   }
 
+  getTaskById(id:number): Observable<Task> {
+    return this.httpClient.get<Task>(`${this.baseUrl}/${id}`);
+  }
+
+  updateTask(id: number, task: Task): Observable<Object> {
+    return this.httpClient.put(`${this.baseUrl}/${id}`,task);
+  }
+
+  deleteTask(id: number): Observable<Object> {
+    return this.httpClient.delete(`${this.baseUrl}/${id}`);
+  }
+  
   
 }

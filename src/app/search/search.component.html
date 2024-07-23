@@ -4,7 +4,7 @@
 
     <div class="form-group">
         <label>Assigned to</label>
-        <select class="form-control" id="user" [(ngModel)]="task.userID" name="user">
+        <select class="form-control" id="user" [(ngModel)]="task.user" name="user">
           <option *ngFor="let user of users" [ngValue]="user.id">{{ user.userName }}</option>
         </select>
       </div>
@@ -29,5 +29,30 @@
 </div>
 
 <div *ngIf="isFormSent">
-    <app-task-list [task]="this.task"></app-task-list>
+  <h1>Task List</h1>
+  <table class="table table-striped">
+      <thead>
+          <tr>
+              <th>No.</th>
+              <th>Due Date</th>
+              <th>Subject</th>
+              <th>Status</th>
+              <th>Assigned</th>
+              <th>Actions</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let task of tasks; let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{task.dueDate}}</td>
+              <td>{{task.subject}}</td>
+              <td>{{task.status}}</td>
+              <td>{{task.user?.userName}}</td>
+              <td>
+                <button *ngIf="task.id !== undefined" (click)="updateTask(task.id)" class="btn btn-info">Update</button>
+                <button *ngIf="task.id !== undefined" (click)="deleteTask(task.id)" class="btn btn-danger delete">Delete</button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
 </div>

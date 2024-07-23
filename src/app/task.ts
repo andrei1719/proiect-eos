@@ -5,11 +5,11 @@ export class Task {
     subject: string | undefined;
     dueDate: Date | undefined;
     status: TaskStatus | undefined;
-    userID: number | undefined;
+    user: User | undefined;
 }
 
 export enum TaskStatus {
-    New = 'NEW',
-    InProgress = 'IN PROGRESS',
+    NEW = 'NEW',
+    IN_PROGRESS = 'IN PROGRESS',
     DONE = 'DONE'
 }
