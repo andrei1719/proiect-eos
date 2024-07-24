@@ -10,6 +10,7 @@ import { SearchComponent } from './search/search.component';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateTaskComponent } from './update-task/update-task.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UpdateTaskComponent } from './update-task/update-task.component';
     UserListComponent,
     SearchComponent,
     CreateTaskComponent,
-    UpdateTaskComponent
+    UpdateTaskComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
