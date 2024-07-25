@@ -3,6 +3,8 @@ import { Task } from '../task';
 import { TaskService } from '../task.service';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-task-list',
@@ -16,16 +18,20 @@ export class TaskListComponent implements OnInit{
   constructor(
     private taskService: TaskService,
     private userService: UserService,
+    private authService: AuthService,
     private router: Router) {
 
   }
 
   ngOnInit(): void {
-    this.getTasks(this.task);
-  }
+    let currentUsername = this.authService.getCurrentUser();
 
-  ngOnChanges() {
-    console.log("AAAAAA")
+    this.userService.getUser(currentUsername).subscribe(data => {
+      let currentUser = new User;
+      currentUser.id = data.id;
+      this.task.user = currentUser;
+      this.getTasks(this.task);
+    })
   }
 
   getTasks(task: Task) {
@@ -33,6 +39,4 @@ export class TaskListComponent implements OnInit{
       this.tasks = data;
     })
   }
-
-  
 }

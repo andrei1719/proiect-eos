@@ -11,12 +11,14 @@ export class UserService {
 
   private usersUrl = "http://localhost:8080/api/v1/users";
 
-
   constructor(private httpClient:  HttpClient) { }
-
 
   getUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(`${this.usersUrl}`);
   }
+
+  getUser(username: string): Observable<User> {
+    return this.httpClient.get<User>(`${this.usersUrl}/${username}`);
+  } 
 }
 

@@ -16,17 +16,20 @@ export class SearchComponent implements OnInit {
     private taskService: TaskService,
     private userService: UserService,
     private router: Router) {
-
+      this.task = {
+        user: new User(),
+      } as Task;
   }
 
   isFormSent: boolean = false;
   users: User[] = [];
-  task: Task = new Task;
+  task: Task;
   statuses = TaskStatus;
   tasks: Task[] = [];
 
 
   ngOnInit(): void {
+    this.task.user = new User;
     this.userService.getUsers().subscribe(data => {
       this.users = data;
     })

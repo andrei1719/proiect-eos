@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import { LogoutComponent } from './logout/logout.component';
+import { AuthGuard } from './auth-guard.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { LogoutComponent } from './logout/logout.component';
     FormsModule
   ],
   providers: [
+    AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]

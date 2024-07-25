@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
@@ -14,8 +14,7 @@ export class LoginComponent {
 
   login() {
     this.authService.login(this.credentials).subscribe(() => {
-      this.router.navigate(['/']);
+      this.router.navigate(['/tasks']);
     });
-  
-}
+  }
 }

@@ -7,11 +7,13 @@ import { Router } from '@angular/router';
   templateUrl: './logout.component.html',
   styleUrl: './logout.component.css'
 })
-export class LogoutComponent implements OnInit{
+export class LogoutComponent implements OnInit {
 
-    constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.authService.logout();
+    this.router.navigate(['/login'])
+
   }
 
   

@@ -1,10 +1,11 @@
+
 <div class="col-md-6 offset-md-3">
   <h3>Search Task</h3>
   <form (ngSubmit)="onSubmit()">
 
     <div class="form-group">
         <label>Assigned to</label>
-        <select class="form-control" id="user" [(ngModel)]="task.user" name="user">
+        <select class="form-control" id="user" [(ngModel)]="task.user.id" name="user">
           <option *ngFor="let user of users" [ngValue]="user.id">{{ user.userName }}</option>
         </select>
       </div>
