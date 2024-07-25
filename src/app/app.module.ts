@@ -5,12 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { UserListComponent } from './user-list/user-list.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateTaskComponent } from './update-task/update-task.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { AuthInterceptorService } from './auth-interceptor.service';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { LoginComponent } from './login/login.component';
     SearchComponent,
     CreateTaskComponent,
     UpdateTaskComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,9 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule, 
     FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
