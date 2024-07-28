@@ -17,7 +17,7 @@ interface DecodedToken {
 export class AuthService {
 
   private apiUrl = 'http://localhost:8080/auth';
-  private url = 'http://localhost:8080/api/v1';
+
   isLoggedIn: boolean = false;
   currentUser: string = "";
 
@@ -42,14 +42,11 @@ export class AuthService {
   logout(): void {
     const token = localStorage.getItem('jwtToken');
     if (token) {
-      this.http.post(`${this.apiUrl}/logout`, {}, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      }).subscribe(() => {
+      this.http.post(`${this.apiUrl}/logout`, {}, 
+      ).subscribe(() => {
         localStorage.removeItem('jwtToken');
       });
-    } else {
-      localStorage.removeItem('jwtToken');
-    }
+    } 
     this.isLoggedIn = false;
   }
 
@@ -70,7 +67,6 @@ export class AuthService {
     if (token === null) {
       return
     }
-
     try {
       const decoded = jwtDecode<DecodedToken>(token);
       this.currentUser = decoded.sub;

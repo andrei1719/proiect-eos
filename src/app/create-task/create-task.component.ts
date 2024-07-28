@@ -29,7 +29,7 @@ export class CreateTaskComponent implements OnInit{
   }
 
   saveTask() {
-    if (this.task.user) {
+    if (this.task.user && this.task.status && this.task.subject && this.task.dueDate) {
       this.taskService.createTask(this.task).subscribe(
         data => {
           this.goToTaskList();
@@ -37,7 +37,7 @@ export class CreateTaskComponent implements OnInit{
         error => console.error(error)
       );
     } else {
-      console.error('User is not set');
+      console.error('Task is not fully set');
     }
   }
 
