@@ -5,7 +5,7 @@
 
     <div class="form-group">
         <label>Assigned to</label>
-        <select class="form-control" id="user" [(ngModel)]="task.user.id" name="user">
+        <select class="form-control" id="user" [(ngModel)]="task.user!.id" name="user">
           <option *ngFor="let user of users" [ngValue]="user.id">{{ user.userName }}</option>
         </select>
       </div>
